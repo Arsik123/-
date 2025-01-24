@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на никах</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Marcellus', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header blockquote {
+            font-style: italic;
+            color: #555;
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #444;
+        }
+
+        .time-location {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .accept-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .accept-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1em;
+            color: #555;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .time-location {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <blockquote>
+            «И из Его знамений то, что Он сотворил для вас из вас самих супруг, чтобы вы находили покой в них, 
+            и установил между вами любовь и милосердие.»<br>— Священный Коран, Сура 30:21
+        </blockquote>
+    </header>
+
+    <main>
+        <h1>Вы приглашены на наш никах!</h1>
+        <p><strong>Арслан & Гульназ</strong></p>
+        <p class="time-location">Время: 17:00<br>Место: Мечеть в деревне Старомунасипово</p>
+        <p>Дата: 7 Февраля</p>
+
+        <img src="C:\Users\user\Desktop\Никах приглашение\Vmake-1733508991.jpg" alt="Изображение торжества никаха">
+
+        <button class="accept-btn" onclick="showRules()">Принять приглашение</button>
+    </main>
+
+    <footer>
+        С любовью и уважением ждём вас!
+    </footer>
+
+    <script>
+        function showRules() {
+            alert(`1. Передаётся от ‘Абдуллаха ибн ‘Умара, да будет доволен Аллах им и его отцом, что Посланник Аллаха ﷺ сказал: «Если кого-то из вас позовут на свадебное угощение, пусть примет приглашение».
+2. В подарок ничего не просим, но если будет, не откажемся, а лучший подарок в конверте.
+Передают со слов Абу Хурайры, да будет доволен им Аллах, что Пророк ﷺ сказал: «Если меня пригласят отведать баранью ногу или лопатку, я обязательно приму приглашение, и если мне подарят баранью ногу или лопатку, я обязательно приму (этот подарок)».
+«Дарите подарки, и меж вами будут укрепляться чувства любви, уважения друг к другу» [аль-Бухари №954].
+3. Не снимать невесту, если и снимаете, то не выкладывать на всеобщее обозрение.
+Пусть они не выставляют напоказ своих прикрас. (Сура Нур, 31 аят)`);
+        }
+    </script>
+</body>
+</html>
