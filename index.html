@@ -30,7 +30,7 @@
       <a-gltf-model
         src="#model"
         scale="0.5 0.5 0.5"
-        rotation="-90 0 0"
+        rotation="0 90 0"
         position="0 0 0.02">
       </a-gltf-model>
     </a-entity>
@@ -42,7 +42,7 @@
 
     <!-- === камера (AR) === -->
     <!-- отключаем дополнительный «look-controls», чтобы камера управлялась только трекингом маркера -->
-    <a-camera look-controls="enabled: true"></a-camera>
+    <a-camera look-controls="enabled: false"></a-camera>
   </a-scene>
 
   <!-- Service Worker -->
