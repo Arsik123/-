@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- локальные копии библиотек -->
+  <!-- локальные копии библиотек (скачайте рядом с index.html) -->
   <script src="aframe.min.js"></script>
   <script src="mindar-image-aframe.prod.js"></script>
   <link rel="manifest" href="manifest.json">
@@ -11,36 +11,45 @@
   <title>MarkerAR</title>
 </head>
 <body>
-<a-scene mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"  
-         vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"  
-         renderer="colorManagement:true; physicallyCorrectLights:true">
+  <a-scene
+    mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    renderer="colorManagement:true; physicallyCorrectLights:true">
 
-  <!--=== ассеты ===-->
-  <a-assets>
-    <a-asset-item id="model" src="model.glb"></a-asset-item>
-  </a-assets>
+    <!-- === ассеты === -->
+    <a-assets>
+      <a-asset-item id="model" src="model.glb"></a-asset-item>
+    </a-assets>
 
-  <!--=== целевой маркер ===-->
-  <a-entity mindar-image-target="targetIndex: 0">
-    <!-- Добавляем rotation и position, чтобы модель стояла ровно и немного приподнята над маркером -->
-    <a-gltf-model src="#model" scale="0.5 0.5 0.5" rotation="0 180 0" position="0 0 0.02"></a-gltf-model>
-  </a-entity>
+    <!-- === целевой маркер === -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <!-- Теперь модель «стоит» на маркере: -->
+      <!--  - rotation: поворачиваем по X на –90°, чтобы «лежа» glTF встал вертикально -->
+      <!--  - position: чуть приподнимаем (0.02) над плоскостью маркера, чтобы не «зарывался» -->
+      <a-gltf-model
+        src="#model"
+        scale="0.5 0.5 0.5"
+        rotation="-90 0 0"
+        position="0 0 0.02">
+      </a-gltf-model>
+    </a-entity>
 
-  <!--=== освещение — решает проблему чёрной модели ===-->
-  <!-- мягкий общий свет -->
-  <a-entity light="type: ambient; intensity: 0.6"></a-entity>
-  <!-- ключевой направленный свет сверху и спереди -->
-  <a-entity light="type: directional; intensity: 0.9" position="0 4 4"></a-entity>
-  <!-- заполняющий / контровой свет -->
-  <a-entity light="type: hemisphere; intensity: 0.4" position="0 1 0"></a-entity>
+    <!-- === освещение === -->
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: directional; intensity: 0.9" position="0 4 4"></a-entity>
+    <a-entity light="type: hemisphere; intensity: 0.4" position="0 1 0"></a-entity>
 
-  <!--=== камера без трекинга головой ===-->
-  <a-camera look-controls="enabled:false"></a-camera>
-</a-scene>
+    <!-- === камера (AR) === -->
+    <!-- отключаем дополнительный «look-controls», чтобы камера управлялась только трекингом маркера -->
+    <a-camera look-controls="enabled: true"></a-camera>
+  </a-scene>
 
-<!-- регистрация service‑worker → оффлайн + кеш -->
-<script>
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
-</script>
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
 </body>
 </html>
