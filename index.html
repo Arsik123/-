@@ -3,42 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- локальные версии библиотек (файлы aframe.min.js и mindar-image-aframe.prod.js
-       положите в ту же папку, что и этот index.html) -->
+  <!-- локальные копии библиотек -->
   <script src="aframe.min.js"></script>
   <script src="mindar-image-aframe.prod.js"></script>
-
-  <!-- manifest.json нужен PWA‑обёртке и APK‑пакетеру -->
   <link rel="manifest" href="manifest.json">
-
   <style>body{margin:0;overflow:hidden}</style>
   <title>MarkerAR</title>
 </head>
 <body>
+<a-scene mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"  
+         vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false"  
+         renderer="colorManagement:true; physicallyCorrectLights:true">
 
-<a-scene 
-  mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"
-  vr-mode-ui="enabled:false"
-  device-orientation-permission-ui="enabled:false">
-
+  <!--=== ассеты ===-->
   <a-assets>
     <a-asset-item id="model" src="model.glb"></a-asset-item>
   </a-assets>
 
+  <!--=== целевой маркер ===-->
   <a-entity mindar-image-target="targetIndex: 0">
     <a-gltf-model src="#model" scale="0.5 0.5 0.5"></a-gltf-model>
   </a-entity>
 
+  <!--=== освещение — решает проблему чёрной модели ===-->
+  <!-- мягкий общий свет -->
+  <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+  <!-- ключевой направленный свет сверху -->
+  <a-entity light="type: directional; intensity: 0.9" position="0 4 4"></a-entity>
+  <!-- заполняющий / контровой -->
+  <a-entity light="type: hemisphere; intensity: 0.4" position="0 1 0"></a-entity>
+
+  <!--=== камера без трекинга головой ===-->
   <a-camera look-controls="enabled:false"></a-camera>
-  <a-entity light="type: ambient; intensity: 1"></a-entity>
 </a-scene>
 
-<!-- регистрация сервис‑воркера для офф‑лайна -->
+<!-- регистрация service‑worker → оффлайн + кеш -->
 <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js');
-}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
 </script>
-
 </body>
 </html>
