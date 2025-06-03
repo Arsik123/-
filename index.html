@@ -22,19 +22,20 @@
 
   <!--=== целевой маркер ===-->
   <a-entity mindar-image-target="targetIndex: 0">
-    <a-gltf-model src="#model" scale="0.5 0.5 0.5"></a-gltf-model>
+    <!-- Добавляем rotation и position, чтобы модель стояла ровно и немного приподнята над маркером -->
+    <a-gltf-model src="#model" scale="0.5 0.5 0.5" rotation="0 180 0" position="0 0 0.02"></a-gltf-model>
   </a-entity>
 
   <!--=== освещение — решает проблему чёрной модели ===-->
   <!-- мягкий общий свет -->
   <a-entity light="type: ambient; intensity: 0.6"></a-entity>
-  <!-- ключевой направленный свет сверху -->
+  <!-- ключевой направленный свет сверху и спереди -->
   <a-entity light="type: directional; intensity: 0.9" position="0 4 4"></a-entity>
-  <!-- заполняющий / контровой -->
+  <!-- заполняющий / контровой свет -->
   <a-entity light="type: hemisphere; intensity: 0.4" position="0 1 0"></a-entity>
 
   <!--=== камера без трекинга головой ===-->
-  <a-camera look-controls="enabled:true"></a-camera>
+  <a-camera look-controls="enabled:false"></a-camera>
 </a-scene>
 
 <!-- регистрация service‑worker → оффлайн + кеш -->
