@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <style>body{margin:0;overflow:hidden}</style>
@@ -24,6 +25,10 @@
     mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+</script>
+
 
   <a-assets>
     <a-asset-item id="model" src="model.glb"></a-asset-item>
