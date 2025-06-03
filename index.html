@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- локальные версии библиотек (файлы aframe.min.js и mindar-image-aframe.prod.js
+       положите в ту же папку, что и этот index.html) -->
+  <script src="aframe.min.js"></script>
+  <script src="mindar-image-aframe.prod.js"></script>
+
+  <!-- manifest.json нужен PWA‑обёртке и APK‑пакетеру -->
   <link rel="manifest" href="manifest.json">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
   <style>body{margin:0;overflow:hidden}</style>
-  <title>MindAR Demo</title>
+  <title>MarkerAR</title>
 </head>
 <body>
 
-<script>
-  /* Запрашиваем разрешение камеры один раз */
-  (async () => {
-    try {
-      const s = await navigator.mediaDevices.getUserMedia({ video: true });
-      s.getTracks().forEach(t => t.stop());
-    } catch(e) { console.warn(e); }
-  })();
-</script>
-
-<a-scene
-    mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
-<script>
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
-</script>
-
+<a-scene 
+  mindar-image="imageTargetSrc: marker.mind; uiLoading: no; uiScanning: no;"
+  vr-mode-ui="enabled:false"
+  device-orientation-permission-ui="enabled:false">
 
   <a-assets>
     <a-asset-item id="model" src="model.glb"></a-asset-item>
@@ -38,7 +29,16 @@
     <a-gltf-model src="#model" scale="0.5 0.5 0.5"></a-gltf-model>
   </a-entity>
 
-  <a-camera></a-camera>
+  <a-camera look-controls="enabled:false"></a-camera>
+  <a-entity light="type: ambient; intensity: 1"></a-entity>
 </a-scene>
+
+<!-- регистрация сервис‑воркера для офф‑лайна -->
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
+
 </body>
 </html>
